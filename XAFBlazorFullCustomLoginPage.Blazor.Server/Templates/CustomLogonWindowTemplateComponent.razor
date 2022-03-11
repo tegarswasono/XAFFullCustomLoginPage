@@ -6,12 +6,13 @@
 
 @inherits FrameTemplateComponentBase<CustomLogonWindowTemplate>
 @inject ILanguageSwitcherService LanguageSwitcherService
-    <h3>hallo 1</h3>
 <div id="logon-template-component" class="app h-100 d-flex flex-column">
     <div class="logon-template-header card-header d-flex justify-content-center">
-        <div class="header-logo"></div>
+        @*<div class="header-logo"></div>*@
+        <img src="images/IconApps.png" width="200" alt="Alternate Text" />
     </div>
-    <div class="logon-template-body d-flex xaf-flex-auto flex-column overflow-auto">
+    <div class="logon-template-body d-flex xaf-flex-auto flex-column overflow-auto" 
+         style="background: rgb(247,247,247); background: radial-gradient(circle, rgba(247,247,247,1) 0%, rgba(231,203,203,1) 100%); ">
         <div class="logon-main-container w-100 d-flex justify-content-center align-items-center xaf-flex-auto">
             <div class="logon-main card mx-3 my-3">
                 <SizeModeContainer>
@@ -47,7 +48,6 @@
         </div>
     </div>
 </div>
-<h3>hallo 2</h3>
 
 @code {
     public static RenderFragment Create(CustomLogonWindowTemplate logonWindowTemplate) => @<CustomLogonWindowTemplateComponent FrameTemplate="@logonWindowTemplate" />;
