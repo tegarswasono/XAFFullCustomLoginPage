@@ -8,9 +8,19 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using DevExpress.ExpressApp.Xpo;
 using XAFBlazorFullCustomLoginPage.Blazor.Server.Services;
+using DevExpress.ExpressApp.Templates;
+using XAFBlazorFullCustomLoginPage.Blazor.Server.Templates;
 
 namespace XAFBlazorFullCustomLoginPage.Blazor.Server {
     public partial class XAFBlazorFullCustomLoginPageBlazorApplication : BlazorApplication {
+        protected override IFrameTemplate CreateDefaultTemplate(TemplateContext context)
+        {
+            if (context == TemplateContext.ApplicationWindow)
+            {
+                return new CustomApplicationWindowTemplate() { AboutInfoString = AboutInfo.Instance.GetAboutInfoString(this) };
+            }
+            return base.CreateDefaultTemplate(context);
+        }
         public XAFBlazorFullCustomLoginPageBlazorApplication() {
             InitializeComponent();
         }
