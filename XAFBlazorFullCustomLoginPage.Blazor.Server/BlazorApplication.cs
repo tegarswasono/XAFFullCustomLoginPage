@@ -19,6 +19,10 @@ namespace XAFBlazorFullCustomLoginPage.Blazor.Server {
             {
                 return new CustomApplicationWindowTemplate() { AboutInfoString = AboutInfo.Instance.GetAboutInfoString(this) };
             }
+            if (context == TemplateContext.LogonWindow)
+            {
+                return new CustomLogonWindowTemplate();
+            }
             return base.CreateDefaultTemplate(context);
         }
         public XAFBlazorFullCustomLoginPageBlazorApplication() {

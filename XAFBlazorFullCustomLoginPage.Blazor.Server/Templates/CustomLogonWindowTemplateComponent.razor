@@ -1,0 +1,54 @@
+﻿@using DevExpress.ExpressApp.Blazor
+@using DevExpress.ExpressApp.Blazor.Components
+@using DevExpress.ExpressApp.Blazor.Templates
+@using DevExpress.ExpressApp.Blazor.Services
+@using DevExpress.ExpressApp.Utils
+
+@inherits FrameTemplateComponentBase<CustomLogonWindowTemplate>
+@inject ILanguageSwitcherService LanguageSwitcherService
+    <h3>hallo 1</h3>
+<div id="logon-template-component" class="app h-100 d-flex flex-column">
+    <div class="logon-template-header card-header d-flex justify-content-center">
+        <div class="header-logo"></div>
+    </div>
+    <div class="logon-template-body d-flex xaf-flex-auto flex-column overflow-auto">
+        <div class="logon-main-container w-100 d-flex justify-content-center align-items-center xaf-flex-auto">
+            <div class="logon-main card mx-3 my-3">
+                <SizeModeContainer>
+                    @if(LanguageSwitcherService.Visible) {
+                        <div class="card-header">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>@FrameTemplate.ViewCaption</div>
+                                <div class="toolbar-language-switcher-wrapper">
+                                    <ToolbarLanguageSwitcher />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else {
+                        <div class="card-header text-center">
+                            @FrameTemplate.ViewCaption
+                        </div>
+                    }
+                    <div class="card-body">
+                        <div class="logon-viewsite">
+                            <ViewSiteComponent View="@FrameTemplate.View" />
+                        </div>
+                        <div class="logon-toolbar">
+                            @FrameTemplate.Toolbar.GetComponentContent()
+                        </div>
+                        @if(FrameTemplate.AdditionalToolbar.ContainsVisibleActionControl()) {
+                            <div class="middle-text-separator">@CaptionHelper.GetLocalizedText("Security/LoginPage", "ExternalAuthorizationActionSeparator")</div>
+                            @FrameTemplate.AdditionalToolbar.GetComponentContent()
+                        }
+                    </div>
+                </SizeModeContainer>
+            </div>
+        </div>
+    </div>
+</div>
+<h3>hallo 2</h3>
+
+@code {
+    public static RenderFragment Create(CustomLogonWindowTemplate logonWindowTemplate) => @<CustomLogonWindowTemplateComponent FrameTemplate="@logonWindowTemplate" />;
+}
